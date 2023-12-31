@@ -6,6 +6,9 @@ const app = express()
 //require the pokemon data
 const pokemons = require('./models/pokemon.js')
 
+// middleware
+app.use(express.static("public")) // use a "public" folder for files
+
 /**
  * Route
  * induces
