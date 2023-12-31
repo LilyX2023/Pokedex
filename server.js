@@ -16,7 +16,7 @@ const pokemons = require('./models/pokemon.js')
 //get request to /pokemons
 //return all pokemons
 app.get('/pokemons', (req,res) => {
-    res.send(pokemons)
+    res.render('index.ejs',{pokemons})
 })
 
 //pokemon show route
