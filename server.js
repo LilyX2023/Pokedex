@@ -18,18 +18,26 @@ app.use(express.static("public")) // use a "public" folder for files
 //pokemon index route
 //get request to /pokemons
 //return all pokemons
-app.get('/pokemons', (req,res) => {
+app.get('/pokemon', (req,res) => {
     res.render('index.ejs',{pokemons})
 })
 
+//new route
+app.get('/pokemon/new', (req,res) => {
+    res.render('new.ejs')
+})
 //pokemon show route
 //get request to /pokemons/:id
 //return the single pokemon
-app.get('/pokemons/:id', (req, res)=>{
+app.get('/pokemon/:id', (req, res)=>{
+    const mappedPokemons = pokemons.map(({name, img, type, stats}) =>({name, img, type, hp: stats.hp, attach: stats.attack, defense: stats.defense}))
     //get id from params
     const id = req.params.id
     //get the pokemon from the array
-    const pokemon = pokemons[id]
+    const pokemon = mappedPokemons[id]
+    
+    //map out the simpler array with the needed property 
+
     //render the pokemon as response
     res.render('show.ejs', {pokemon})
 })
