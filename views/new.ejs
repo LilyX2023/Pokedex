@@ -7,13 +7,15 @@
     <%- include ("./cssjs.ejs") %>
 </head>
 <body>
-    <h1>Create New Pokemon</h1>
+    <h1>Add New Pokemon</h1>
     <form action="/pokemon" method="post">
-        <label>Name: <input type="text" name="name"></label>
-        <label>Img: <input type="text" name="img"></label>
-        <label>Type: <input type="text" name="type"></label>
-        <label>Hp: <input type="text" name=""></label>
-
+        <label>name: <input type="text" name="name"></label><br>
+        <label>img: <input type="text" name="img"></label><br>
+        <label>type: <input type="text" name="type"></label><br>
+        <label>hp: <input type="text" name="hp"></label><br>
+        <label>attack: <input type="text" name="attack" ></label><br>
+        <label>defense: <input type="text" name="defense"></label><br>
+        <input type="submit" value="Add New Pokemon">
     </form>
 </body>
 </html>

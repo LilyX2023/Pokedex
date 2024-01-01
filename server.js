@@ -8,6 +8,7 @@ const pokemons = require('./models/pokemon.js')
 
 // middleware
 app.use(express.static("public")) // use a "public" folder for files
+app.use(express.urlencoded({extended:true}))
 
 /**
  * Route
@@ -26,11 +27,32 @@ app.get('/pokemon', (req,res) => {
 app.get('/pokemon/new', (req,res) => {
     res.render('new.ejs')
 })
+
+//Create Route - Receive form data, add new pokemon
+//post request /pokemon
+//create a pokemon from the form data, then redirect back to index
+app.post("/pokemon",(req, res)=>{
+    const newPokemon ={
+        name: req.body.name,
+        img: req.body.img,
+        type: [
+            req.body.type
+        ],
+        stats: {
+            hp: req.body.hp,
+            attack: req.body.attack,
+            defense: req.body.defense
+        },
+    }
+    req.body = newPokemon
+    pokemons.push(req.body)
+    res.redirect("/pokemon")
+})
 //pokemon show route
 //get request to /pokemons/:id
 //return the single pokemon
 app.get('/pokemon/:id', (req, res)=>{
-    const mappedPokemons = pokemons.map(({name, img, type, stats}) =>({name, img, type, hp: stats.hp, attach: stats.attack, defense: stats.defense}))
+    const mappedPokemons = pokemons.map(({name, img, type, stats}) =>({name, img, type, hp: stats.hp, attack: stats.attack, defense: stats.defense}))
     //get id from params
     const id = req.params.id
     //get the pokemon from the array

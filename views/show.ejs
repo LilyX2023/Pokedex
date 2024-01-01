@@ -7,7 +7,21 @@
     <%- include ('./cssjs.ejs') %>
 </head>
 <body>
-    <h1>Pokedex</h1>
+    <h1>I choose you!</h1>
+    <h2><%= pokemon.name %></h2>
     <img src= "<%= pokemon.img%>">
+    <h3>Type</h3>
+    <ul>
+        <% pokemon.type.forEach(el => { %>
+            <li><%= el %></li>
+        <% }); %>
+    </ul>
+    <h3>Stats </h3>
+    <h4>
+        Hp: <%= pokemon.hp %> <br>
+        Attack:<%= pokemon.attack %> <br>
+        Defense: <%= pokemon.defense %> <br>
+    </h4>
+    <a href="/pokemon">Back to Index</a>
 </body>
 </html>
