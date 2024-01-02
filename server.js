@@ -2,13 +2,20 @@
 const express = require('express')
 //create our app object
 const app = express()
+const morgan = require('morgan')
+const methodOverride = require('method-override')
 
 //require the pokemon data
 const pokemons = require('./models/pokemon.js')
 
+
 // middleware
 app.use(express.static("public")) // use a "public" folder for files
-app.use(express.urlencoded({extended:true}))
+app.use(express.urlencoded({extended:true}))//add the data to req.body
+app.use(morgan("dev"))
+app.use(methodOverride("_method"))
+
+
 
 /**
  * Route
@@ -35,9 +42,9 @@ app.post("/pokemon",(req, res)=>{
     const newPokemon ={
         name: req.body.name,
         img: req.body.img,
-        type: [
-            req.body.type
-        ],
+        
+       type: req.body.type.split(" "),
+
         stats: {
             hp: req.body.hp,
             attack: req.body.attack,
@@ -47,6 +54,14 @@ app.post("/pokemon",(req, res)=>{
     req.body = newPokemon
     pokemons.push(req.body)
     res.redirect("/pokemon")
+})
+
+//Delete route - delete request goes to /pokemon/:id
+app.delete('/pokemon/:id',(req, res)=> {
+    //get the id from params
+    const id = req.params.id
+    pokemons.splice (id, 1)
+    res.redirect('/pokemon');
 })
 //pokemon show route
 //get request to /pokemons/:id
