@@ -7,16 +7,20 @@
     <%- include ("./cssjs.ejs") %>
 </head>
 <body>
-    <h1>Pokedex</h1>
-    <ul id = "pokeimg">
-    <% for (let i = 0; i < pokemons.length; i++){ %>
-
-        <a href="/pokemon/<%= i %>"><li><img src= "<%= pokemons[i].img%>"></li></a>
-        <form action="/pokemon/<%= i %>?_method=DELETE" method="post">
-            <input type="submit" value="Delete Pokemon">
-        </form>
-
-    <% } %>
-    </ul>
+    <%- include("header.ejs") %>
+    <div class="flex-box">
+        <ul>
+            <% for (let i = 0; i < pokemons.length; i++){ %>
+                <div class="card">
+                <div class="pokeimg"><a href="/pokemon/<%= i %>"><li><img src= "<%= pokemons[i].img%>"></li></a></div>
+            
+                <div class="delete-button"><form action="/pokemon/<%= i %>?_method=DELETE" method="post">
+                    <input type="submit" value="Delete Pokemon">
+                </form> </div>
+                <div class="edit-button"><a href="/pokemon/<%= i %>/edit"><button>Edit</button></a></div>
+                </div>
+            <% } %>
+        </ul>
+    </div>
 </body>
 </html>

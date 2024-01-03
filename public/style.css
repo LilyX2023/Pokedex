@@ -1,3 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins&family=Roboto&display=swap');
+
+*{
+    font-family: 'Roboto', sans-serif;
+}
 body{
     
     background-color: antiquewhite;
@@ -7,6 +12,35 @@ h1{
     text-align: center;
 }
 
-ul#pokeimg {
+ul {
     list-style-type: none;
 }
+
+.flex-box{
+    display: flex;
+    
+}
+
+.card{
+    padding: 24px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 16px;
+    border-radius: 16px;
+    box-shadow: 8px 8px 20px #adadad, -8px -8px 20px #ebebeb;
+}
+
+.pokeimg{
+    height: 100px;
+    width: 100px;
+}
+
+.pokeimg img{
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+}
+

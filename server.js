@@ -43,7 +43,7 @@ app.post("/pokemon",(req, res)=>{
         name: req.body.name,
         img: req.body.img,
         
-       type: req.body.type.split(" "),
+       type: req.body.type.split(","),
 
         stats: {
             hp: req.body.hp,
@@ -63,6 +63,39 @@ app.delete('/pokemon/:id',(req, res)=> {
     pokemons.splice (id, 1)
     res.redirect('/pokemon');
 })
+
+//Edit route - render a form to edit a specific fruit
+app.get('/pokemon/:id/edit', (req,res) => {
+    const id = req.params.id
+    const pokemon = pokemons[id]
+    res.render('edit.ejs',{pokemon,id})
+
+})
+
+//Update route
+app.put("/pokemon/:id",(req, res) => {
+    const id = req.params.id
+    const updatedPokemon = {
+        name: req.body.name,
+        type: req.body.type.split(","),
+
+        stats: {
+            hp: req.body.hp,
+            attack: req.body.attack,
+            defense: req.body.defense
+        },
+    }
+    const oldVer = pokemons[id]
+    req.body=updatedPokemon
+    let mergedData = {
+        ...oldVer,
+        ...req.body,
+    }
+
+    pokemons[id] = mergedData
+    res.redirect('/pokemon')
+})
+
 //pokemon show route
 //get request to /pokemons/:id
 //return the single pokemon
@@ -76,7 +109,7 @@ app.get('/pokemon/:id', (req, res)=>{
     //map out the simpler array with the needed property 
 
     //render the pokemon as response
-    res.render('show.ejs', {pokemon})
+    res.render('show.ejs', {pokemon, id})
 })
 
 //server listener

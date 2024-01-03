@@ -8,6 +8,7 @@
 </head>
 <body>
     <h1>I choose you!</h1>
+    <a href="/pokemon">Back To Index</a>
     <h2><%= pokemon.name %></h2>
     <img src= "<%= pokemon.img%>">
     <h3>Type</h3>
@@ -22,6 +23,9 @@
         Attack:<%= pokemon.attack %> <br>
         Defense: <%= pokemon.defense %> <br>
     </h4>
-    <a href="/pokemon">Back to Index</a>
+    <form action="/pokemon/<%= pokemon.id %>?_method=DELETE" method="post">
+    <input type="submit" value="Delete Pokemon">
+    </form>
+    <a href="/pokemon/<%= pokemon.id %>/edit"><button>Edit</button></a>
 </body>
 </html>
