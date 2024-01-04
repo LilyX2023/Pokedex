@@ -9,7 +9,6 @@
 <body>
     <%- include("header.ejs") %>
     <div class="flex-box">
-        <ul>
             <% for (let i = 0; i < pokemons.length; i++){ %>
                 <div class="card">
                 <div class="pokeimg"><a href="/pokemon/<%= i %>"><li><img src= "<%= pokemons[i].img%>"></li></a></div>
@@ -20,7 +19,6 @@
                 <div class="edit-button"><a href="/pokemon/<%= i %>/edit"><button>Edit</button></a></div>
                 </div>
             <% } %>
-        </ul>
     </div>
 </body>
 </html>

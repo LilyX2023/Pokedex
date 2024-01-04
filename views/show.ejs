@@ -23,9 +23,6 @@
         Attack:<%= pokemon.attack %> <br>
         Defense: <%= pokemon.defense %> <br>
     </h4>
-    <form action="/pokemon/<%= pokemon.id %>?_method=DELETE" method="post">
-    <input type="submit" value="Delete Pokemon">
-    </form>
     <a href="/pokemon/<%= pokemon.id %>/edit"><button>Edit</button></a>
 </body>
 </html>
